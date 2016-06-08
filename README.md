@@ -61,4 +61,5 @@ describe('category-name', function () {
 
 ## FAQ
 Q：SDK 更新会对当前项目产生影响么？
+
 A：会，目前 JS SDK 每一次有新的 PR 被 merge 进主分支，都会发送一个 PR 到当前项目，这个 PR 只会更新 `package.json` 里面的 JS SDK 的版本，这样也会触发 travis CI 进行自动化检测，一旦 `npm test` 结果没有通过，会及时通知文档维护人员进行查看，需要手动的去比对文档中的代码，这样可以避免过期方法或者接口更名对用户造成的困扰。
