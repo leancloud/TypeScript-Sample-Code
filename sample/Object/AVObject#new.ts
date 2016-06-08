@@ -4,8 +4,7 @@ import * as AV from 'leancloud-jssdk';
 
 AV.init({
   appId:'uay57kigwe0b6f5n0e1d4z4xhydsml3dor24bzwvzr57wdap',
-  appKey:'kfgz7jjfsk55r5a8a3y4ttd3je1ko11bkibcikonk32oozww',
-  masterKey:'o9sd6j9d30kukvljnhpwv5in73ljrmg95m5csl588917kp8s'});
+  appKey:'kfgz7jjfsk55r5a8a3y4ttd3je1ko11bkibcikonk32oozww'});
 
   describe('Object', function () {
     it('#new an AVObject with extend', function (done) {
