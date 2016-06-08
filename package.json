@@ -16,7 +16,8 @@
   "dependencies": {
     "leancloud-jssdk": "1.0.0-rc8",
     "moment": "^2.13.0",
-    "typescript": "^1.8.10"
+    "typescript": "^1.8.10",
+    "typings": "^1.0.4"
   },
   "engines": {
     "node": "6.x"
