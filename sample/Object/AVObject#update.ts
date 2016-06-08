@@ -1,4 +1,5 @@
-/// <reference path="typings/index.d.ts" />
+/// <reference path="../../typings/index.d.ts" />
+/// <reference path="../init.ts" />
 import * as chai from 'chai';
 import * as AV from 'leancloud-jssdk';
 
@@ -17,48 +18,46 @@ AV.init({
 let targetObjectId = '';
 let file = ...
 */
-
+let todoObjectId: string = '';
 // category-name 可以是 Object，File 等功能模块的首字母大写
-describe('sample-category-name', function () {
+describe('Object', function () {
 
   // 测试用例所需要的前置条件都需要在启动的时候调用。
   // 在 before 函数里面执行一些欲置脚本
   // 例如初始化 LeanCloud SDK
-  before(function() {
+  before(function () {
     // runs before all tests in this block
-    /*
-    AV.init({
-      appId:'{put-test-appId-here}}',
-      appKey:'{put-test-appKey-here}'});
-    */
+    let todo: AV.Object = new AV.Object('Todo');// 新建对象
+    todo.set('location', '二楼大会议室');
+    return todo.save<AV.Object>().then(todo => {
+      todoObjectId = todo.id;
+    }, error => {
+    });
   });
   // 实例方法使用 # 分隔类和方法
-  it('ClassName#instance-function-name', function (done) {
-    try{
+  it('AVObject#update', function (done) {
+    try {
       // 示例代码-Start
+      // 第一个参数是 className，第二个参数是 objectId
+      let todo: AV.Object = AV.Object.createWithoutData('Todo', todoObjectId);
+      // 修改属性
+      todo.set('content', '每周工程师会议，本周改为周三下午3点半。');
+      // 保存到云端
+      todo.save<AV.Object>().then(todo => {
+        chai.assert.isNotNull(todo.id);
+        done();
+      }, error => {
+        if (error) throw error;
+      });
       // 示例代码-End
-      done();
     }
-    catch(e){
-      chai.assert.isNull(e);
-    }
-  });
-
-  //静态方法使用 .(dot) 分隔类和方法
-  it('ClassName.static-function-name', function (done) {
-    try{
-      // 示例代码-Start
-
-      // 示例代码-End
-      done();
-    }
-    catch(e){
+    catch (e) {
       chai.assert.isNull(e);
     }
   });
 
   // 在 after 里面可以执行一些清理脚本，清理本次执行所产生的脏数据
-  after(function() {
+  after(function () {
     // runs after all tests in this block
   });
 });
