@@ -4,7 +4,7 @@
   "description": "leancloud_typescript_sdk_docs_sample_code",
   "main": "index.js",
   "scripts": {
-    "pretest": "tsc",
+    "pretest": "tsc && node out/sample/init.js",
     "test": "mocha $(find out -name '*.js')"
   },
   "author": "Wu Jun",

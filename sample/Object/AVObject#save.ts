@@ -1,9 +1,11 @@
 /// <reference path="../../typings/index.d.ts" />
-/// <reference path="../init.ts" />
 import * as chai from 'chai';
 import * as AV from 'leancloud-jssdk';
 
 describe('Object', function () {
+  before(() => {
+
+  });
   it('AVObject#save', function (done) {
     let todoFolder: AV.Object = new AV.Object('TodoFolder');// 新建对象
     todoFolder.set('name', '工作');// 设置名称

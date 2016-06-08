@@ -39,7 +39,7 @@ describe('Object', function () {
     try {
       // 示例代码-Start
       // 第一个参数是 className，第二个参数是 objectId
-      let todo: AV.Object = AV.Object.createWithoutData('Todo', '5745557f71cfe40068c6abe0');
+      let todo: AV.Object = AV.Object.createWithoutData('Todo', todoObjectId);
       // 修改属性
       todo.set('content', '每周工程师会议，本周改为周三下午3点半。');
       // 保存到云端
@@ -47,7 +47,7 @@ describe('Object', function () {
         chai.assert.isNotNull(todo.id);
         done();
       }, error => {
-        if(error) throw  error;
+        if (error) throw error;
       });
       // 示例代码-End
     }
