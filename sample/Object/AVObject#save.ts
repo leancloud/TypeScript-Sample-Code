@@ -14,7 +14,7 @@ AV.init({
       todoFolder.save<AV.Object>().then(
         (data) => {
           let savedTodoFolder : AV.Object = data;
-          chai.assert.ok(savedTodoFolder,"new an AVObject with extend");
+          chai.assert.isNotNull(savedTodoFolder,"new an AVObject with extend");
           done();
       },(error)=>{
         if(error) throw error;
