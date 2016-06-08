@@ -5,6 +5,7 @@ import * as AV from 'leancloud-jssdk';
 AV.init({
   appId:'uay57kigwe0b6f5n0e1d4z4xhydsml3dor24bzwvzr57wdap',
   appKey:'kfgz7jjfsk55r5a8a3y4ttd3je1ko11bkibcikonk32oozww'});
+
   describe('Object', function () {
     it('AVObject#save', function (done) {
       let todoFolder:AV.Object = new AV.Object('TodoFolder');// 新建对象
@@ -17,6 +18,7 @@ AV.init({
           done();
       },(error)=>{
         if(error) throw error;
+        done();
       });
     });
 
