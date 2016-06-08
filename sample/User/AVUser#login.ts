@@ -28,11 +28,8 @@ describe('User', function () {
   // 例如初始化 LeanCloud SDK
   before(function() {
     // runs before all tests in this block
-    AV.init({
-      appId:'uay57kigwe0b6f5n0e1d4z4xhydsml3dor24bzwvzr57wdap',
-      appKey:'kfgz7jjfsk55r5a8a3y4ttd3je1ko11bkibcikonk32oozww'});
+    // 实例方法使用 # 分隔类和方法
   });
-  // 实例方法使用 # 分隔类和方法
   it('AVUser#login', function (done) {
     try{
       // 示例代码-Start

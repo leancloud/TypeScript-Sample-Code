@@ -1,4 +1,5 @@
 /// <reference path="../../typings/index.d.ts" />
+/// <reference path="../init.ts" />
 import * as chai from 'chai';
 import * as AV from 'leancloud-jssdk';
 
@@ -26,11 +27,6 @@ describe('Object', function () {
   // 例如初始化 LeanCloud SDK
   before(function () {
     // runs before all tests in this block
-    AV.init({
-      appId: 'uay57kigwe0b6f5n0e1d4z4xhydsml3dor24bzwvzr57wdap',
-      appKey: 'kfgz7jjfsk55r5a8a3y4ttd3je1ko11bkibcikonk32oozww'
-    });
-
     let todo: AV.Object = new AV.Object('Todo');// 新建对象
     todo.set('location', '二楼大会议室');
     return todo.save<AV.Object>().then(todo => {
