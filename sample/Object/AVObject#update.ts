@@ -1,7 +1,7 @@
 /// <reference path="../../typings/index.d.ts" />
 /// <reference path="../init.ts" />
 import * as chai from 'chai';
-import * as AV from 'leancloud-jssdk';
+import * as AV from 'leancloud-storage';
 
 // 测试用例所需要的前置条件都需要在启动的时候调用，例如
 /*
