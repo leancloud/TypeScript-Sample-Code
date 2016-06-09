@@ -83,6 +83,10 @@ describe('sample-category-name', function () {
 
 ```
 
+## Travis CI 配置
+因为网络原因，如果在服务端使用大陆节点的 AppID 以及 AppKey 偶尔会 Https 请求超时，单元测试的断言会误判。因此在 Travis CI 运行的时候动态修改了环境变量，使用了美国节点的应用。但是并没有直接书写在 `.travis.yml` 里，而是在服务端的配置里面。
+
+
 ## FAQ
 Q：SDK 更新会对当前项目产生影响么？
 
