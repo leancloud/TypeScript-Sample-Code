@@ -2,7 +2,7 @@
 /// <reference path="../init.ts" />
 
 import * as chai from 'chai';
-import * as AV from 'leancloud-jssdk';
+import * as AV from 'leancloud-storage';
 import * as utils from "../Common/utils";
 
 let randomUsername = '';

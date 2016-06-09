@@ -1,7 +1,7 @@
 /// <reference path="../../typings/index.d.ts" />
 
 import * as chai from 'chai';
-import * as AV from 'leancloud-jssdk';
+import * as AV from 'leancloud-storage';
 
 describe('Object', function () {
   it('#new an AVObject with extend', function (done) {
