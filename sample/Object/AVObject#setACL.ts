@@ -40,7 +40,7 @@ describe('Object', function () {
             let roleACL = new AV.ACL();
             roleACL.setPublicReadAccess(true);
             roleACL.setPublicWriteAccess(false);
-            
+
             // 新建一个角色，并把为当前用户赋予该角色
             administratorRole = new AV.Role(randomRolename,roleACL);//新建角色
 
@@ -56,12 +56,11 @@ describe('Object', function () {
                 // 将 ACL 实例赋予 Post 对象
                 post.setACL(objectACL);
 
-                post.save(null, {
-                    success: function (post) {
-                    },
-                    error: function (post, error) {
-                        console.log(error);
-                    }
+                post.save<AV.Object>().then(post=>{
+                    chai.assert.isNotNull(post.id);
+                    done();
+                },error=>{
+                    if(error) throw error;
                 });
             }, error=>{
                 //角色保存失败，处理 error
