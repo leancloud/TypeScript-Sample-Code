@@ -20,13 +20,21 @@ describe('Role', function () {
     // 在 before 函数里面执行一些欲置脚本
     // 例如初始化 LeanCloud SDK
     before(function () {
+
+        AV.init({
+            appId: 'WI5a89CtPIOrWpvIwzNfOg9R-MdYXbMMI',
+            appKey: 'RUoMOSD8RNlpd0MIIiSDi7BU',
+            region: 'us'
+        });
         // runs before all tests in this block
         let randomRolename = utils.randomString(8);
         testRole = new AV.Role(randomRolename);
-        return testRole.save<AV.Object>().then(testRole => {
+        return testRole.save<AV.Object>().then<string>(testRole => {
             roleObjectId = testRole.id;
+            console.log(roleObjectId);
+            return roleObjectId;
         }, error => {
-
+            return null;
         });
     });
     // 实例方法使用 # 分隔类和方法
@@ -36,6 +44,7 @@ describe('Role', function () {
             // 构建 AV.Role 的查询
             let roleQuery = new AV.Query(AV.Role);
             roleQuery.get<AV.Role>(roleObjectId).then(role => {
+                console.log(role.id);
                 let relation = role.getUsers();// 获取关系
                 let query = relation.query();// 获取查询
                 query.find<AV.User[]>().then(users => {
@@ -43,7 +52,10 @@ describe('Role', function () {
                     chai.assert.equal(users.length, 0);
                     done();
                 }, error => {
-                    if (error) throw 'error on find users';
+                    if (error) {
+                        console.log(error);
+                        throw error;
+                    }
                 });
             }, error => {
                 if (error) throw 'error on get role';
@@ -52,6 +64,7 @@ describe('Role', function () {
         }
         catch (e) {
             chai.assert.isNull(e);
+            done();
         }
     });
     // 在 after 里面可以执行一些清理脚本，清理本次执行所产生的脏数据
