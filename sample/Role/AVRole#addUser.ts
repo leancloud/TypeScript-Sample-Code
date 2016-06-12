@@ -16,7 +16,7 @@ let randomRolename = '';
 let currentUser: AV.User;
 let randomUsername = '';
 // category-name 可以是 Object，File 等功能模块的首字母大写
-describe('Role', function () {
+describe('Role#addUser', function () {
 
     // 测试用例所需要的前置条件都需要在启动的时候调用。
     // 在 before 函数里面执行一些欲置脚本
@@ -53,43 +53,43 @@ describe('Role', function () {
     it('AVRole#addUser', function (done) {
         try {
             // 示例代码-Start
-            // 构建 AV.Role 的查询
-            let roleQuery = new AV.Query(AV.Role);
-            roleQuery.equalTo('name', randomRolename)
-            roleQuery.find<AV.Role[]>().then(roles => {
-                // 如果角色存在
-                if (roles.length > 0) {
-                    let administratorRole = roles[0];
-                    roleQuery.equalTo('users', AV.User.current());
-                    roleQuery.find<AV.Object[]>().then(userForRole => {
-                        if (userForRole.length == 0) {//该角色存在，但是当前用户未被赋予该角色
-                            let userRoleRelation = administratorRole.getUsers();
-                            userRoleRelation.add(AV.User.current());//为当前用户赋予该角色
-                            administratorRole.save<AV.Role>().then(result => {
-                                chai.assert.isNotNull(result.id);
-                                done();
-                            }, error => {
-                                if (error) throw 'error on add user';
-                            });
-                        }
-                    }, error => {
-                        if (error) throw 'error on find role';
-                    });
-                } else {
-                    // 该角色不存在，接下来创建该角色，并未当前用户赋予该角色
-                    let administratorRole = new AV.Role(randomRolename);//新建角色
+    // 构建 AV.Role 的查询
+    let roleQuery = new AV.Query(AV.Role);
+    roleQuery.equalTo('name', randomRolename)
+    roleQuery.find<AV.Role[]>().then(roles => {
+        // 如果角色存在
+        if (roles.length > 0) {
+            let administratorRole = roles[0];
+            roleQuery.equalTo('users', AV.User.current());
+            roleQuery.find<AV.Object[]>().then(userForRole => {
+                if (userForRole.length == 0) {//该角色存在，但是当前用户未被赋予该角色
                     let userRoleRelation = administratorRole.getUsers();
                     userRoleRelation.add(AV.User.current());//为当前用户赋予该角色
-                    administratorRole.save<AV.Role>().then(role => {
-                        chai.assert.isNotNull(role.id);
+                    administratorRole.save<AV.Role>().then(result => {
+                        chai.assert.isNotNull(result.id);
                         done();
                     }, error => {
-                        if (error) throw 'error save role and add user';
+                        if (error) throw 'error on add user';
                     });
                 }
             }, error => {
-                if (error) throw error;
+                if (error) throw 'error on find role';
             });
+        } else {
+            // 该角色不存在，接下来创建该角色，并未当前用户赋予该角色
+            let administratorRole = new AV.Role(randomRolename);//新建角色
+            let userRoleRelation = administratorRole.getUsers();
+            userRoleRelation.add(AV.User.current());//为当前用户赋予该角色
+            administratorRole.save<AV.Role>().then(role => {
+                chai.assert.isNotNull(role.id);
+                done();
+            }, error => {
+                if (error) throw 'error save role and add user';
+            });
+        }
+    }, error => {
+        if (error) throw error;
+    });
             // 示例代码-End
         }
         catch (e) {

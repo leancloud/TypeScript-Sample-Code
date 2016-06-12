@@ -16,12 +16,13 @@ let randomRolename = '';
 let currentUser: AV.User;
 let randomUsername = '';
 // category-name 可以是 Object，File 等功能模块的首字母大写
-describe('Role', function () {
+describe('AVRole#removeUser', function () {
 
     // 测试用例所需要的前置条件都需要在启动的时候调用。
     // 在 before 函数里面执行一些欲置脚本
     // 例如初始化 LeanCloud SDK
     before(function () {
+        this.timeout(5000);
         // runs before all tests in this block
         randomRolename = utils.randomString(8);
         randomUsername = utils.randomString(8);
@@ -54,6 +55,7 @@ describe('Role', function () {
     // 实例方法使用 # 分隔类和方法
     it('AVRole#removeUser', function (done) {
         try {
+            this.timeout(5000);
             // 示例代码-Start
             // 构建 AV.Role 的查询
             let roleQuery = new AV.Query(AV.Role);

@@ -14,13 +14,13 @@ let file = ...
 let roleObjectId = '';
 let testRole: AV.Role;
 // category-name 可以是 Object，File 等功能模块的首字母大写
-describe('Role', function () {
+describe('Role#queryRole', function () {
 
     // 测试用例所需要的前置条件都需要在启动的时候调用。
     // 在 before 函数里面执行一些欲置脚本
     // 例如初始化 LeanCloud SDK
     before(function () {
-
+        this.timeout(5000);
         AV.init({
             appId: 'WI5a89CtPIOrWpvIwzNfOg9R-MdYXbMMI',
             appKey: 'RUoMOSD8RNlpd0MIIiSDi7BU',
@@ -31,7 +31,6 @@ describe('Role', function () {
         testRole = new AV.Role(randomRolename);
         return testRole.save<AV.Object>().then<string>(testRole => {
             roleObjectId = testRole.id;
-            console.log(roleObjectId);
             return roleObjectId;
         }, error => {
             return null;
@@ -40,11 +39,11 @@ describe('Role', function () {
     // 实例方法使用 # 分隔类和方法
     it('AVRole#queryRole', function (done) {
         try {
+            this.timeout(5000);
             // 示例代码-Start
             // 构建 AV.Role 的查询
             let roleQuery = new AV.Query(AV.Role);
             roleQuery.get<AV.Role>(roleObjectId).then(role => {
-                console.log(role.id);
                 let relation = role.getUsers();// 获取关系
                 let query = relation.query();// 获取查询
                 query.find<AV.User[]>().then(users => {

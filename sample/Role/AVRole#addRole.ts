@@ -25,7 +25,7 @@ let moderatorName = utils.randomString(8);
 let randomUsername = '';
 let currentUser: AV.User;
 // category-name 可以是 Object，File 等功能模块的首字母大写
-describe('Role', function () {
+describe('Role#addRole', function () {
 
     // 测试用例所需要的前置条件都需要在启动的时候调用。
     // 在 before 函数里面执行一些欲置脚本
