@@ -16,7 +16,7 @@ let randomRolename = '';
 let currentUser: AV.User;
 let randomUsername = '';
 // category-name 可以是 Object，File 等功能模块的首字母大写
-describe('Role', function () {
+describe('AVRole#save', function () {
 
   // 测试用例所需要的前置条件都需要在启动的时候调用。
   // 在 before 函数里面执行一些欲置脚本
@@ -59,7 +59,5 @@ describe('Role', function () {
   // 在 after 里面可以执行一些清理脚本，清理本次执行所产生的脏数据
   after(function () {
     // runs after all tests in this block
-    administratorRole.destroy();
-    currentUser.destroy();
   });
 });

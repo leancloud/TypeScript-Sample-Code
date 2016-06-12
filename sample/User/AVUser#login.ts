@@ -20,6 +20,7 @@ let targetObjectId = '';
 let file = ...
 */
 let tom: AV.User;
+let randomTomUserName = '';
 // category-name 可以是 Object，File 等功能模块的首字母大写
 describe('User', function () {
 
@@ -29,15 +30,22 @@ describe('User', function () {
   before(function () {
     // runs before all tests in this block
     // 实例方法使用 # 分隔类和方法
+
+    // AV.init({
+    //   appId: 'uay57kigwe0b6f5n0e1d4z4xhydsml3dor24bzwvzr57wdap',
+    //   appKey: 'kfgz7jjfsk55r5a8a3y4ttd3je1ko11bkibcikonk32oozww',
+    //   region: 'cn'
+    // });
       tom = new AV.User();// 新建 AVUser 对象实例
-      tom.setUsername('Tom');// 设置用户名
+      randomTomUserName = utils.randomString(8);
+      tom.setUsername(randomTomUserName);// 设置用户名
       tom.setPassword('cat!@#123');// 设置密码
       return tom.signUp();
   });
   it('AVUser#login', function (done) {
     try {
       // 示例代码-Start
-      AV.User.logIn<AV.User>('Tom', 'cat!@#123').then((loginedUser) => {
+      AV.User.logIn<AV.User>(randomTomUserName, 'cat!@#123').then((loginedUser) => {
         chai.assert.isNotNull(loginedUser.id);
         done();
       }, (error => {

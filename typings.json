@@ -5,6 +5,6 @@
     "node": "registry:dt/node#6.0.0+20160514165920"
   },
   "dependencies": {
-    "leancloud-storage": "registry:npm/leancloud-storage#1.0.0+20160608072150"
+    "leancloud-storage": "registry:npm/leancloud-storage#1.0.1-rc.1+20160610170214"
   }
 }
