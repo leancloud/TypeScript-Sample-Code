@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "leancloud-storage": "^1.0.0",
-    "moment": "^2.13.0",
+    "moment": "^2.14.0",
     "typescript": "^1.8.10",
     "typings": "^1.0.4"
   },
